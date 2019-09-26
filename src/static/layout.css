@@ -615,6 +615,13 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
+
+#ui,
+#card,
+#image {
+  width: 20px !important
+}
+
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
