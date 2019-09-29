@@ -6,58 +6,58 @@
  */
 
 import React from "react"
-import PropTypes from "prop-types"
+import PropTypes, { func } from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import Progress from "react-progress-2";
 
 import Header from "./header"
 import CardTable from "./card-table"
 import "../static/layout.css"
+import "react-progress-2/main.css"
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-          description
-        }
-      }
+class Layout extends React.Component {
+  constructor() {
+    super();
+    this.state = { isLoaded: false }
+    this.isLoaded = this.loadHanlder.bind(this);
+  }
+
+  loadHanlder (isLoaded) {
+    if (!isLoaded) {
+      console.log('running')
+      Progress.show()
+    } else {
+      console.log('done')
+      Progress.hide()
     }
-  `)
+  }
 
-  return (
-    <>
-    <div 
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}>
-      <Header siteTitle={data.site.siteMetadata.title} siteDescription={data.site.siteMetadata.description} />
-      <div
+  render() {
+    return (
+      <>
+      <div 
         style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-          justifyItems: "center",
-          overflow: "auto",
-        }}
-      >
-        {/* <main>{children}</main> */}
-        <CardTable/>
-        {/* <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer> */}
+          display: "flex",
+          flexDirection: "column",
+        }}>
+        <Header siteTitle={`EmojiDex 😊`} siteDescription={`An index of GitHub emojis.`} />
+        <Progress.Component style={{height: "3px"}} thumbStyle={{background: "#FFC83D"}}/>
+        <div
+          style={{
+            margin: `0 auto`,
+            maxWidth: 960,
+            padding: `0px 1.0875rem 1.45rem`,
+            paddingTop: 0,
+            justifyItems: "center",
+            overflow: "auto",
+          }}
+        >
+          <CardTable loadHandler={this.loadHanlder}/>
+        </div>
       </div>
-    </div>
-    </>
-  )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+      </>
+    )
+  }
 }
 
 export default Layout

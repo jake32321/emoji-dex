@@ -17,6 +17,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
+    "react-progress-2": "^4.4.3",
     "react-ui-cards": "^2.0.0",
     "semantic-ui-react": "^0.88.1"
   },
