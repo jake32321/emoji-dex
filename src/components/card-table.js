@@ -7,7 +7,9 @@ class CardTable extends React.Component {
   constructor(props) {
     super();
     this.toggleProgress = props.toggleProgress
-    this.state = { emojiData: [] }
+    this.state = { 
+      emojiData: [] 
+    }
   }
 
   createReadableName(name) {
@@ -29,14 +31,15 @@ class CardTable extends React.Component {
       .then(response => response.json())
       .then((data) => {
           const emojiData = Object.keys(data).map(emojiName => {     
+            const readableName = this.createReadableName(emojiName);   
 
-            const readableName = this.createReadableName(emojiName);       
             return ({ 
               name: emojiName, 
               imgURL: data[emojiName], 
               readableName
             })
           }) 
+
           this.setState({ emojiData })
           this.toggleProgress()
       });
@@ -52,9 +55,11 @@ class CardTable extends React.Component {
         }} 
         className="wrapper">
           <div className="card-table">
-            {this.state.emojiData.map(emoji => {
-              return <EmojiCard imgURL={emoji.imgURL} name={emoji.name} readableName={emoji.readableName} />
-            })}
+            {this.state.emojiData.map(emoji => 
+              <EmojiCard 
+                imgURL={emoji.imgURL} 
+                name={emoji.name} 
+                readableName={emoji.readableName} />)}
           </div>
       </div>
       </>

@@ -29,8 +29,12 @@ class Layout extends React.Component {
           display: "flex",
           flexDirection: "column",
         }}>
-        <Header siteTitle={`EmojiDex 😊`} siteDescription={`An index of GitHub emojis.`} />
-        <Progress.Component style={{height: "3px"}} thumbStyle={{background: "#FFC83D"}}/>
+        <Header 
+          siteTitle={`EmojiDex 😊`} 
+          siteDescription={`An index of GitHub emojis.`}/>
+        <Progress.Component 
+          style={{height: "3px"}} 
+          thumbStyle={{background: "#FFC83D"}}/>
         <div
           style={{
             margin: `0 auto`,
