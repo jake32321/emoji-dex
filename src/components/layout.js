@@ -6,9 +6,7 @@
  */
 
 import React from "react"
-import PropTypes, { func } from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import Progress from "react-progress-2";
+import Progress from "react-progress-2"
 
 import Header from "./header"
 import CardTable from "./card-table"
@@ -19,17 +17,6 @@ class Layout extends React.Component {
   constructor() {
     super();
     this.state = { isLoaded: false }
-    this.isLoaded = this.loadHanlder.bind(this);
-  }
-
-  loadHanlder (isLoaded) {
-    if (!isLoaded) {
-      console.log('running')
-      Progress.show()
-    } else {
-      console.log('done')
-      Progress.hide()
-    }
   }
 
   render() {
@@ -52,7 +39,7 @@ class Layout extends React.Component {
             overflow: "auto",
           }}
         >
-          <CardTable loadHandler={this.loadHanlder}/>
+          <CardTable/>
         </div>
       </div>
       </>

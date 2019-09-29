@@ -8,19 +8,15 @@
 import React from "react"
 import EmojiCard from "./emoji-card"
 
-import PropTypes from "prop-types"
-
 import "../static/card-table.css"
 
 class CardTable extends React.Component {
   constructor(props) {
     super();
-    this.loadHandler = props.loadHandler
     this.state = { emojiData: [] }
   }
 
   componentDidMount() {
-    this.loadHandler(false)
     fetch("https://api.github.com/emojis")
       .then(response => response.json())
       .then((data) => {
@@ -28,7 +24,6 @@ class CardTable extends React.Component {
             { name: emojiName, imgURL: data[emojiName] }
           )) 
           this.setState({ emojiData })
-          this.loadHandler(true)
       });
   }
 
@@ -37,7 +32,8 @@ class CardTable extends React.Component {
       <>  
       <div
         style={{
-          height: window.innerHeight*0.85
+          paddingTop: "15px",
+          height: window.innerHeight*0.9
         }} 
         className="wrapper">
           <div className="card-table">

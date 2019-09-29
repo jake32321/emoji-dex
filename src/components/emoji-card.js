@@ -6,18 +6,26 @@
  */
 
 import React from "react"
-import PropTypes from "prop-types"
-
 import "../static/card.css"
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
-const EmojiCard = ({ imgURL, name }) => {
-  return (
-    <>  
-    <div className="card">
-      <img src={imgURL}/>
-    </div>
-    </>
-  )
+class EmojiCard extends React.Component {
+  constructor (props) {
+    super();
+
+    this.imgURL = props.imgURL;
+    this.name = props.name;
+  }
+
+  render () {
+    return (
+      <>  
+      <div className="card">
+        <img src={this.imgURL}/>
+      </div>
+      </>
+    )
+  } 
 }
 
 export default EmojiCard
