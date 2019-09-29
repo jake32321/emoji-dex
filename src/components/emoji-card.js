@@ -7,7 +7,6 @@
 
 import React from "react"
 import "../static/card.css"
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 class EmojiCard extends React.Component {
   constructor (props) {
