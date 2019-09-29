@@ -6,7 +6,6 @@
  */
 
 import React from "react"
-
 import EmojiCard from "./emoji-card"
 
 import "../static/card-table.css"
@@ -14,14 +13,17 @@ import "../static/card-table.css"
 class CardTable extends React.Component {
   constructor() {
     super();
-    this.state = { emojiData: {} }
+    this.state = { emojiData: [] }
   }
 
   componentDidMount() {
     fetch("https://api.github.com/emojis")
       .then(response => response.json())
       .then((data) => {
-        this.setState({ emojiData: data })
+          const emojiData = Object.keys(data).map(emojiName => (
+            { name: emojiName, imgURL: data[emojiName] }
+          )) 
+          this.setState({ emojiData })
       });
   }
 
@@ -34,13 +36,9 @@ class CardTable extends React.Component {
         }} 
         className="wrapper">
           <div className="card-table">
-              <EmojiCard/>
-              <EmojiCard/>
-              <EmojiCard/>
-              <EmojiCard/>
-              <EmojiCard/>
-              <EmojiCard/>
-              <EmojiCard/>
+            {this.state.emojiData.map(emoji => {
+              return <EmojiCard imgURL={emoji.imgURL} name={emoji.name} />
+            })}
           </div>
       </div>
       </>
