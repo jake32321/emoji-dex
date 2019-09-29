@@ -11,15 +11,16 @@
   
   .container-2 input#search{
     width: 50px;
-    height: 50px;
+    margin-top: 10px;
+    height: 30px;
     background: #fff;
     border: none;
     font-size: 10pt;
     float: right;
     position: relative;
-    color: #000;
+    color: #fff;
     max-width: 80%;
-    padding-left: 35px;
+    padding-left: 15px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -62,6 +63,12 @@
    
   .container-2:hover input#search{
     width: 300px;
+    box-shadow: 0px 0px  5px #000000;
+  }
+
+  .container-2 input:focus#search{
+    color: #000;
+    box-shadow: 0px 0px  5px #000000;
   }
    
   .container-2:hover .icon{
