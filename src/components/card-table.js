@@ -6,93 +6,46 @@
  */
 
 import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
 import EmojiCard from "./emoji-card"
 
 import "../static/card-table.css"
 
-const CardTable = () => {
-//   const data = useStaticQuery(graphql`
-//   query Test {
-//     test: file(absolutePath: {regex: "/test2.png/"}) {
-//       childImageSharp {
-//         fixed(width: 100, height: 100) {
-//             ...GatsbyImageSharpFixed
-//         }
-//       }
-//     }
-//   }`
-//   )
+class CardTable extends React.Component {
+  constructor() {
+    super();
+    this.state = { emojiData: {} }
+  }
 
-  return (
-    <>  
-    <div className="wrapper">
-        <div className="card-table">
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-            <EmojiCard/>
-        </div>
-    </div>
-    </>
-  )
+  componentDidMount() {
+    fetch("https://api.github.com/emojis")
+      .then(response => response.json())
+      .then((data) => {
+        this.setState({ emojiData: data })
+      });
+  }
+
+  render(){  
+    return (
+      <>  
+      <div
+        style={{
+          height: window.innerHeight*0.85
+        }} 
+        className="wrapper">
+          <div className="card-table">
+              <EmojiCard/>
+              <EmojiCard/>
+              <EmojiCard/>
+              <EmojiCard/>
+              <EmojiCard/>
+              <EmojiCard/>
+              <EmojiCard/>
+          </div>
+      </div>
+      </>
+    )
+  }
 }
 
 export default CardTable

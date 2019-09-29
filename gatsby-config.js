@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `EmojiDex 😊`,
-    description: `An index of all currently available emojis.`,
+    description: `An index of all currently available GitHub emojis.`,
     author: `Jake Reed <jacob.reed2017@gmail.com>`,
   },
   plugins: [

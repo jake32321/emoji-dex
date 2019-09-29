@@ -12,22 +12,9 @@ import { useStaticQuery, graphql } from "gatsby"
 import "../static/card.css"
 
 const EmojiCard = () => {
-//   const data = useStaticQuery(graphql`
-//   query Test {
-//     test: file(absolutePath: {regex: "/test2.png/"}) {
-//       childImageSharp {
-//         fixed(width: 100, height: 100) {
-//             ...GatsbyImageSharpFixed
-//         }
-//       }
-//     }
-//   }`
-//   )
-
   return (
     <>  
-    <div className="card">
-    </div>
+    <div className="card"></div>
     </>
   )
 }

@@ -27,6 +27,11 @@ const Layout = ({ children }) => {
 
   return (
     <>
+    <div 
+      style={{
+        display: "flex",
+        flexDirection: "column",
+      }}>
       <Header siteTitle={data.site.siteMetadata.title} siteDescription={data.site.siteMetadata.description} />
       <div
         style={{
@@ -34,10 +39,11 @@ const Layout = ({ children }) => {
           maxWidth: 960,
           padding: `0px 1.0875rem 1.45rem`,
           paddingTop: 0,
-          justifyItems: "center"
+          justifyItems: "center",
+          overflow: "auto",
         }}
       >
-        <main>{children}</main>
+        {/* <main>{children}</main> */}
         <CardTable/>
         {/* <footer>
           © {new Date().getFullYear()}, Built with
@@ -45,6 +51,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer> */}
       </div>
+    </div>
     </>
   )
 }
