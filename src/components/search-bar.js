@@ -14,6 +14,10 @@ class SearchBar extends React.Component {
     super();
   }
 
+  filterEmojis (event) {
+      console.log(event.target.value);
+  }
+
   render(){  
     return (
       <>  
@@ -21,7 +25,7 @@ class SearchBar extends React.Component {
         <div class="box">
             <div class="container-2">
                 <span class="icon"><i class="fa fa-search"></i></span>
-                <input type="search" id="search" />
+                <input type="search" id="search" onChange={this.filterEmojis}/>
             </div>
         </div>
       </>

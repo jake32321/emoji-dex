@@ -19,6 +19,15 @@ class Layout extends React.Component {
     this.state = { isLoaded: false }
   }
 
+  toggleProgress () {
+    if(!this.state.isLoaded) {
+      Progress.show()
+    } else {
+      Progress.hide()
+    }
+    this.setState({ isLoaded: !this.state.isLoaded })
+  }
+
   render() {
     return (
       <>
@@ -39,7 +48,7 @@ class Layout extends React.Component {
             overflow: "auto",
           }}
         >
-          <CardTable/>
+          <CardTable toggleProgress={this.toggleProgress}/>
         </div>
       </div>
       </>

@@ -14,13 +14,14 @@ class EmojiCard extends React.Component {
 
     this.imgURL = props.imgURL;
     this.name = props.name;
+    this.readableName = props.readableName;
   }
 
   render () {
     return (
       <>  
       <div className="card">
-        <img src={this.imgURL}/>
+        <img key={this.name} src={this.imgURL}/>
       </div>
       </>
     )
