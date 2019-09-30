@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import SearchBar from "./search-bar"
 
-const Header = ({ siteTitle, siteDescription }) => (
+const Header = ({ siteTitle, siteDescription, filterEmojis }) => (
   <header
     style={{
       background: '#0068ad',
@@ -49,7 +49,9 @@ const Header = ({ siteTitle, siteDescription }) => (
           float: "right",
           padding: "10px"
         }}>
-        <SearchBar/>
+        <SearchBar
+          filterEmojis={filterEmojis}
+        />
       </div>
     </div>
   </header>

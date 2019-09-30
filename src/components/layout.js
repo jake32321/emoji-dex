@@ -7,12 +7,15 @@ import "../static/layout.css"
 import "react-progress-2/main.css"
 
 class Layout extends React.Component {
-  constructor() {
-    super();
-    this.state = { isLoaded: false }
+  state = {
+    isLoaded: false
   }
 
-  toggleProgress () {
+  filterEmojis = () => {
+    console.log('some filter in layout.js')
+  }
+
+  toggleProgress = () => {
     if(!this.state.isLoaded) {
       Progress.show()
     } else {
@@ -23,7 +26,6 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <>
       <div 
         style={{
           display: "flex",
@@ -31,7 +33,9 @@ class Layout extends React.Component {
         }}>
         <Header 
           siteTitle={`EmojiDex 😊`} 
-          siteDescription={`An index of GitHub emojis.`}/>
+          siteDescription={`An index of GitHub emojis.`}
+          filterEmojis={this.filterEmojis}
+        />
         <Progress.Component 
           style={{height: "3px"}} 
           thumbStyle={{background: "#FFC83D"}}/>
@@ -48,7 +52,6 @@ class Layout extends React.Component {
           <CardTable toggleProgress={this.toggleProgress}/>
         </div>
       </div>
-      </>
     )
   }
 }
