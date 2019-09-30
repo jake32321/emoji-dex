@@ -3,12 +3,8 @@ import React from "react"
 import "../static/search-bar.css"
 
 class SearchBar extends React.Component {
-  filterEmojis = (event) => {
-      console.log(event.target.value);
-      this.props.filterEmojis(event.target.value);
-  }
-
   render() {  
+    const { filterEmojis } = this.props
     return (
       <>
         <link 
@@ -21,7 +17,7 @@ class SearchBar extends React.Component {
                     placeholder="Search..."
                     type="search" 
                     id="search" 
-                    onChange={this.filterEmojis}/>
+                    onChange={filterEmojis}/>
             </div>
         </div>
       </>

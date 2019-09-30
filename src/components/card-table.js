@@ -8,38 +8,9 @@ class CardTable extends React.Component {
     emojiData: [] 
   }
 
-  createReadableName = (name) => {
-    let splitName;
-    if (!name.includes("_")) {
-      splitName = [ name ]
-    } else {
-      splitName = name.split("_")
-    }
-    
-    return splitName.map(readableNamePart => 
-      readableNamePart[0].toUpperCase() + readableNamePart.slice(1)
-    ).join(" ");
-  }
-
   componentDidMount() {
-    const { toggleProgress } = this.props;
-    toggleProgress()
-    fetch("https://api.github.com/emojis")
-      .then(response => response.json())
-      .then((data) => {
-          const emojiData = Object.keys(data).map(emojiName => {
-            const readableName = this.createReadableName(emojiName);   
-
-            return ({ 
-              name: emojiName, 
-              imgURL: data[emojiName], 
-              readableName
-            })
-          }) 
-
-          this.setState({ emojiData })
-          toggleProgress()
-      });
+    const { emojiData } = this.props
+    this.setState({ emojiData })
   }
 
   render() {  
