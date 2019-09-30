@@ -4,15 +4,11 @@ import EmojiCard from "./emoji-card"
 import "../static/card-table.css"
 
 class CardTable extends React.Component {
-  constructor(props) {
-    super();
-    this.toggleProgress = props.toggleProgress
-    this.state = { 
-      emojiData: [] 
-    }
+  state = { 
+    emojiData: [] 
   }
 
-  createReadableName(name) {
+  createReadableName = (name) => {
     let splitName;
     if (!name.includes("_")) {
       splitName = [ name ]
@@ -26,11 +22,12 @@ class CardTable extends React.Component {
   }
 
   componentDidMount() {
-    this.toggleProgress()
+    const { toggleProgress } = this.props;
+    toggleProgress()
     fetch("https://api.github.com/emojis")
       .then(response => response.json())
       .then((data) => {
-          const emojiData = Object.keys(data).map(emojiName => {     
+          const emojiData = Object.keys(data).map(emojiName => {
             const readableName = this.createReadableName(emojiName);   
 
             return ({ 
@@ -41,13 +38,12 @@ class CardTable extends React.Component {
           }) 
 
           this.setState({ emojiData })
-          this.toggleProgress()
+          toggleProgress()
       });
   }
 
-  render(){  
+  render() {  
     return (
-      <>  
       <div
         style={{
           paddingTop: "15px",
@@ -55,14 +51,14 @@ class CardTable extends React.Component {
         }} 
         className="wrapper">
           <div className="card-table">
-            {this.state.emojiData.map(emoji => 
+            {this.state.emojiData.map((emoji, idx) => 
               <EmojiCard 
+                key={idx}
                 imgURL={emoji.imgURL} 
                 name={emoji.name} 
                 readableName={emoji.readableName} />)}
           </div>
       </div>
-      </>
     )
   }
 }
