@@ -8,20 +8,48 @@ import "react-progress-2/main.css"
 
 class Layout extends React.Component {
   state = {
+    emojiData: [],
+    filteredEmojiData: [],
     isLoaded: false
   }
 
-  filterEmojis = () => {
-    console.log('some filter in layout.js')
+  filterEmojis = (event) => {
+    const filteredEmojiData = this.state.emojiData.filter(emojiData => 
+      emojiData.name.includes(event.target.value))
+    this.setState({ filteredEmojiData })
   }
 
-  toggleProgress = () => {
-    if(!this.state.isLoaded) {
-      Progress.show()
+  createReadableName = (name) => {
+    let splitName;
+    if (!name.includes("_")) {
+      splitName = [ name ]
     } else {
-      Progress.hide()
+      splitName = name.split("_")
     }
-    this.setState({ isLoaded: !this.state.isLoaded })
+    
+    return splitName.map(readableNamePart => 
+      readableNamePart[0].toUpperCase() + readableNamePart.slice(1)
+    ).join(" ");
+  }
+
+  componentDidMount = () => {
+    Progress.show()
+    fetch("https://api.github.com/emojis")
+      .then(response => response.json())
+      .then((data) => {
+          const emojiData = Object.keys(data).map(emojiName => {
+            const readableName = this.createReadableName(emojiName);   
+
+            return ({ 
+              name: emojiName, 
+              imgURL: data[emojiName], 
+              readableName
+            })
+          }) 
+
+          this.setState({ emojiData, isLoaded: true })
+          Progress.hide()
+      });
   }
 
   render() {
@@ -49,7 +77,9 @@ class Layout extends React.Component {
             overflow: "auto",
           }}
         >
-          <CardTable toggleProgress={this.toggleProgress}/>
+          {this.state.isLoaded && <CardTable 
+            emojiData={this.state.emojiData} 
+            filteredEmojis={this.state.filteredEmojiData}/>}
         </div>
       </div>
     )
