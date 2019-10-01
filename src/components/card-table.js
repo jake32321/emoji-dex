@@ -13,6 +13,12 @@ class CardTable extends React.Component {
     this.setState({ emojiData })
   }
 
+  componentWillReceiveProps({ filteredEmojis }) {
+    if (filteredEmojis) {
+      this.setState({ emojiData: filteredEmojis })
+    }
+  }
+
   render() {  
     return (
       <div

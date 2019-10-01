@@ -9,15 +9,14 @@ import "react-progress-2/main.css"
 class Layout extends React.Component {
   state = {
     emojiData: [],
+    filteredEmojiData: [],
     isLoaded: false
   }
 
   filterEmojis = (event) => {
-    // this.props.filterEmojis(event.target.value);
-    const newEmojiData = this.state.emojiData.filter(emojiData => 
-      emojiData.readableName.includes(event.target.value))
-    this.setState({ emojiData: newEmojiData })
-    console.log(newEmojiData)
+    const filteredEmojiData = this.state.emojiData.filter(emojiData => 
+      emojiData.name.includes(event.target.value))
+    this.setState({ filteredEmojiData })
   }
 
   createReadableName = (name) => {
@@ -33,7 +32,7 @@ class Layout extends React.Component {
     ).join(" ");
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     Progress.show()
     fetch("https://api.github.com/emojis")
       .then(response => response.json())
@@ -78,7 +77,9 @@ class Layout extends React.Component {
             overflow: "auto",
           }}
         >
-          {this.state.isLoaded && <CardTable emojiData={this.state.emojiData}/>}
+          {this.state.isLoaded && <CardTable 
+            emojiData={this.state.emojiData} 
+            filteredEmojis={this.state.filteredEmojiData}/>}
         </div>
       </div>
     )
